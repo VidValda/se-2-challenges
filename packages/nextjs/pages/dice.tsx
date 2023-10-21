@@ -18,7 +18,7 @@ import {
 
 const ROLL_ETH_VALUE = "0.002";
 const CHANGE_BLOCKS_INTERVAL_MS = 1000;
-// const ROLLING_TIME_MS = 500;
+const ROLLING_TIME_MS = 500;
 const MAX_TABLE_ROWS = 10;
 
 const DiceGame: NextPage = () => {
@@ -65,7 +65,7 @@ const DiceGame: NextPage = () => {
         const { player, amount, roll } = log.args;
 
         if (player && amount && roll) {
-          // setTimeout(() => {
+          setTimeout(() => {
           setIsRolling(false);
           setRolls(rolls =>
             [{ address: player, amount: Number(amount), roll: roll.toString(16).toUpperCase() }, ...rolls].slice(
@@ -73,7 +73,7 @@ const DiceGame: NextPage = () => {
               MAX_TABLE_ROWS,
             ),
           );
-          // }, ROLLING_TIME_MS);
+          }, ROLLING_TIME_MS);
         }
       });
     },
@@ -199,7 +199,7 @@ const DiceGame: NextPage = () => {
                 <Amount amount={Number(riggedRollBalance?.formatted || 0)} showUsdPrice className="text-lg" />
               </div>
             </div>
-            {/* <button
+            <button
               onClick={() => {
                 if (!rolled) {
                   setRolled(true);
@@ -211,7 +211,7 @@ const DiceGame: NextPage = () => {
               className="mt-2 btn btn-secondary btn-xl normal-case font-xl text-lg"
             >
               Rigged Roll!
-            </button> */}
+            </button>
 
             <div className="flex mt-8">
               {rolled ? (
